@@ -6,16 +6,19 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.invincible.mall</groupId>
     <artifactId>mobile-mall</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>v1.0.0</version>
     <name>mobile-mall</name>
-    <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+    <description>移动商城项目</description>
+
     <properties>
         <java.version>11</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
