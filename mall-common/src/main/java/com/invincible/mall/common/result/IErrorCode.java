@@ -1,4 +1,4 @@
-package com.invincible.mall.common.api;
+package com.invincible.mall.common.result;
 
 /**
  * 封装API的错误码

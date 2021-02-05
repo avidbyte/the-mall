@@ -20,12 +20,11 @@ import java.util.Map;
  * @since 2020-07-20 09:16
  */
 public class PlusGenerator {
-    private static final String DATABASE = "lanlinker-labor";
-    private static final String URL = "jdbc:mysql://192.168.1.36:3306/" + DATABASE + "?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
-    //     private static final String URL = "jdbc:mysql://localhost:3306/"+DATABASE+"?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
+    private static final String DATABASE = "mobile-mall";
+    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE + "?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USER_NAME = "root";
-    private static final String PASSWORD = "root36";
+    private static final String PASSWORD = "root";
 
     //private static String[] tables = new String[]{"users","user_profiles"};
 
@@ -33,19 +32,19 @@ public class PlusGenerator {
     private static String mapperPath = "";
 
     public static void main(String[] args) {
-        String author = "chery";
+        String author = "aaron";
         String packageName = "com.lanlinker.cloud.labor";
         String[] tablePrefix = null;
-        execute(author,packageName,tablePrefix);
+        execute(author, packageName, tablePrefix);
     }
 
 
-    private static void execute(String author , String packageName , String... tablePrefix){
+    private static void execute(String author, String packageName, String... tablePrefix) {
         AutoGenerator autoGenerator = new AutoGenerator()
                 //配置数据源
                 .setDataSource(initDataSourceConfig())
                 //全局配置
-                .setGlobalConfig(initGlobalConfig(author,packageName))
+                .setGlobalConfig(initGlobalConfig(author, packageName))
                 //策略配置项
                 .setStrategy(initStrategyConfig())
                 //跟包相关的配置项
@@ -60,6 +59,7 @@ public class PlusGenerator {
 
     /**
      * 配置数据源
+     *
      * @return DataSourceConfig
      */
     private static DataSourceConfig initDataSourceConfig() {
@@ -73,6 +73,7 @@ public class PlusGenerator {
 
     /**
      * 全局配置
+     *
      * @return GlobalConfig
      */
     private static GlobalConfig initGlobalConfig(String author, String packageName) {
@@ -102,7 +103,7 @@ public class PlusGenerator {
     }
 
     //策略配置项
-    private static StrategyConfig initStrategyConfig(){
+    private static StrategyConfig initStrategyConfig() {
         return new StrategyConfig()
                 // 表名生成策略
                 .setNaming(NamingStrategy.underline_to_camel)
@@ -112,7 +113,7 @@ public class PlusGenerator {
 //                .setInclude("ums_organization","labor_project_basis")
 //                .setInclude("labor_extension","labor_synchronization_status","labor_contacts","labor_bank_account")
 //                .setInclude("ums_user_project_relation","ums_user_organization_relation")
-                .setInclude("behavior_evaluation","personnel_behavior_evaluation")
+                .setInclude("behavior_evaluation", "personnel_behavior_evaluation")
                 //Boolean类型字段是否移除is前缀
                 .setEntityBooleanColumnRemoveIsPrefix(true)
                 .setRestControllerStyle(true)
@@ -120,7 +121,7 @@ public class PlusGenerator {
     }
 
     //跟包相关的配置项
-    private static PackageConfig initPackageConfig(String packageName){
+    private static PackageConfig initPackageConfig(String packageName) {
         return new PackageConfig()
                 // 自定义包路径
                 .setParent(packageName)
@@ -133,7 +134,7 @@ public class PlusGenerator {
     }
 
     //抽象的对外接口
-    private static InjectionConfig initInjectionConfig(String packageName){
+    private static InjectionConfig initInjectionConfig(String packageName) {
         return new InjectionConfig() {// 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
             @Override
             public void initMap() {
@@ -142,7 +143,7 @@ public class PlusGenerator {
                 this.setMap(map);
             }
         }.setFileOutConfigList(Collections.<FileOutConfig>singletonList(new FileOutConfig(
-                "/templates/mapper.xml.ftl" ) {
+                "/templates/mapper.xml.ftl") {
             // 自定义输出文件目录
             @Override
             public String outputFile(TableInfo tableInfo) {
@@ -152,7 +153,7 @@ public class PlusGenerator {
                 basePath = codeDir + "/src/main/resources/mapper/";
 
                 // 自定义输入文件名称
-                String s = basePath +tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                String s = basePath + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
                 return s;
             }
         }));
