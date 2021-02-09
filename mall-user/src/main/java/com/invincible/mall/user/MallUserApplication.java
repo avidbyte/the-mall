@@ -1,13 +1,13 @@
-package com.invincible.mall;
+package com.invincible.mall.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MobileMallApplication {
+public class MallUserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MobileMallApplication.class, args);
+        SpringApplication.run(MallUserApplication.class, args);
     }
 
 }
