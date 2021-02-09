@@ -22,8 +22,7 @@ public enum AccountType {
     /**
      * 身份证
      */
-    IDENTITY("3","身份证")
-    ;
+    IDENTITY("3","身份证");
 
     /**
      * code

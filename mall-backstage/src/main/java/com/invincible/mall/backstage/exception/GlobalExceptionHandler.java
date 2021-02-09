@@ -1,4 +1,4 @@
-package com.invincible.mall.user.exception;//package com.invincible.mall.common.exception;
+package com.invincible.mall.backstage.exception;
 
 import com.invincible.mall.common.api.CommonResult;
 import com.invincible.mall.common.api.ErrorCode;

@@ -11,7 +11,7 @@
     <artifactId>mall-common</artifactId>
     <version>1.0.0</version>
     <name>mall-common</name>
-    <description>公共包</description>
+    <description>移动商城公共包</description>
     <packaging>jar</packaging>
 
     <properties>
@@ -19,6 +19,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

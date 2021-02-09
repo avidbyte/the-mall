@@ -21,11 +21,11 @@ import java.util.Map;
  */
 public class PlusGenerator {
     private static final String DATABASE = "lanlinker-labor";
-    private static final String URL = "jdbc:mysql://192.168.1.36:3306/" + DATABASE + "?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
-    //     private static final String URL = "jdbc:mysql://localhost:3306/"+DATABASE+"?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
+    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
+//    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE+ "?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USER_NAME = "root";
-    private static final String PASSWORD = "root36";
+    private static final String PASSWORD = "root";
 
     //private static String[] tables = new String[]{"users","user_profiles"};
 
@@ -85,15 +85,22 @@ public class PlusGenerator {
         gc.setOutputDir(basePath);
         gc.setAuthor(author);
         gc.setOpen(false);
-        gc.setFileOverride(true);// 是否覆盖文件
-        gc.setActiveRecord(true);// 开启 activeRecord 模式
-        gc.setEnableCache(false);// XML 二级缓存
-        gc.setBaseResultMap(true);// XML ResultMap
-        gc.setBaseColumnList(true);// XML columList
-        gc.setOpen(false);//生成后打开文件夹
+        // 是否覆盖文件
+        gc.setFileOverride(true);
+        // 开启 activeRecord 模式
+        gc.setActiveRecord(true);
+        // XML 二级缓存
+        gc.setEnableCache(false);
+        // XML ResultMap
+        gc.setBaseResultMap(true);
+        // XML columList
+        gc.setBaseColumnList(true);
+        //生成后打开文件夹
+        gc.setOpen(false);
 //        gc.setSwagger2(true);
         gc.setEntityName("%s");
-        gc.setMapperName("%sMapper");// 自定义文件命名，注意 %s 会自动填充表实体属性！
+        // 自定义文件命名，注意 %s 会自动填充表实体属性！
+        gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
@@ -101,25 +108,27 @@ public class PlusGenerator {
         return gc;
     }
 
-    //策略配置项
+    /**
+     * 策略配置项
+     * @return StrategyConfig
+     */
     private static StrategyConfig initStrategyConfig(){
         return new StrategyConfig()
                 // 表名生成策略
                 .setNaming(NamingStrategy.underline_to_camel)
                 // 需要生成的表
-
-//                .setInclude("ums_user","ums_role","ums_menu","ums_permission","ums_resource","ums_resource_category","ums_role_resource_relation","ums_role_menu_relation","ums_role_permission_relation","ums_user_role_relation","ums_user_permission_relation","ums_tenant")
-//                .setInclude("ums_organization","labor_project_basis")
-//                .setInclude("labor_extension","labor_synchronization_status","labor_contacts","labor_bank_account")
-//                .setInclude("ums_user_project_relation","ums_user_organization_relation")
-                .setInclude("behavior_evaluation","personnel_behavior_evaluation")
+                .setInclude("behavior_evaluation")
                 //Boolean类型字段是否移除is前缀
                 .setEntityBooleanColumnRemoveIsPrefix(true)
                 .setRestControllerStyle(true)
                 .setEntityLombokModel(true);
     }
 
-    //跟包相关的配置项
+    /**
+     * 跟包相关的配置项
+     * @param packageName 包名
+     * @return PackageConfig
+     */
     private static PackageConfig initPackageConfig(String packageName){
         return new PackageConfig()
                 // 自定义包路径
@@ -132,9 +141,14 @@ public class PlusGenerator {
 
     }
 
-    //抽象的对外接口
+    /**
+     * 抽象的对外接口
+     * @param packageName 包名
+     * @return InjectionConfig
+     */
     private static InjectionConfig initInjectionConfig(String packageName){
-        return new InjectionConfig() {// 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
+        // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
+        return new InjectionConfig() {
             @Override
             public void initMap() {
                 Map<String, Object> map = new HashMap<>(32);

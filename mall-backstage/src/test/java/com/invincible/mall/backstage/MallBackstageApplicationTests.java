@@ -1,10 +1,10 @@
-package com.invincible.mall.user;
+package com.invincible.mall.backstage;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MallUserApplicationTests {
+class MallBackstageApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,13 +1,16 @@
-package com.invincible.mall.user;
+package com.invincible.mall.backstage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author aaron
+ */
 @SpringBootApplication
-public class MallUserApplication {
+public class MallBackstageApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallUserApplication.class, args);
+        SpringApplication.run(MallBackstageApplication.class, args);
     }
 
 }

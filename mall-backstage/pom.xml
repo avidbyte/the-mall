@@ -5,19 +5,20 @@
     <parent>
         <groupId>com.invincible.mall</groupId>
         <artifactId>mobile-mall</artifactId>
-        <version>v1.0.0</version>
+        <version>1.0.0</version>
     </parent>
 
-    <artifactId>mall-user</artifactId>
+    <artifactId>mall-backstage</artifactId>
     <version>1.0.0</version>
-    <name>mall-user</name>
-    <description>Demo project for Spring Boot</description>
+    <name>mall-backstage</name>
+    <description>移动商城后台管理</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -74,14 +75,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
