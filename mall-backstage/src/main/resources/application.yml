@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: backstage
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.16:3306/lanlinker-labor?useSSL=false&serverTimezone=Hongkong&allowPublicKeyRetrieval=true
+    username: xeai_db_user
+    password: mysql000000
+  redis:
+    host: 192.168.1.33
+    port: 6379
+    password: redis000000
