@@ -10,7 +10,7 @@
 
     <groupId>com.invincible.mall</groupId>
     <artifactId>mobile-mall</artifactId>
-    <version>v1.0.0</version>
+    <version>1.0.0</version>
     <name>mobile-mall</name>
     <packaging>pom</packaging>
     <description>移动商城项目</description>
@@ -22,6 +22,8 @@
 
     <modules>
         <module>mall-common</module>
+        <module>mall-portal</module>
+        <module>mall-background</module>
     </modules>
 
     <dependencyManagement>
@@ -57,6 +59,7 @@
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
 
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -70,11 +73,14 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.4.2</version>
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.amqp</groupId>

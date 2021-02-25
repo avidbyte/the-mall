@@ -1,10 +1,10 @@
-package com.invincible.mall;
+package com.invincible.mall.portal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MobileMallApplicationTests {
+class MallPortalApplicationTests {
 
     @Test
     void contextLoads() {
