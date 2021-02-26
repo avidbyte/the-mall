@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Administrator
- * @description 统一AOP记录接口访问日志
- * @time 9/10/2020 1:49 PM
+ * 统一AOP记录接口访问日志
+ * @author aaron
+ * @since 2021-02-09
  **/
 @Aspect
 @ComponentScan

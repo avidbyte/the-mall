@@ -20,7 +20,7 @@ import java.util.Map;
  * @since 2020-07-20 09:16
  */
 public class PlusGenerator {
-    private static final String DATABASE = "lanlinker-labor";
+    private static final String DATABASE = "mobile-mall";
     private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
 //    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE+ "?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
