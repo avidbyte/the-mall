@@ -21,11 +21,11 @@ import java.util.Map;
  */
 public class PlusGenerator {
     private static final String DATABASE = "lanlinker-labor";
-    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
-//    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE+ "?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
+    private static final String URL = "jdbc:mysql://192.168.1.36:3306/" + DATABASE + "?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
+    //     private static final String URL = "jdbc:mysql://localhost:3306/"+DATABASE+"?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USER_NAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "root36";
 
     //private static String[] tables = new String[]{"users","user_profiles"};
 

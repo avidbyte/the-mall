@@ -1,6 +1,6 @@
 package com.invincible.mall.common.exception;
 
-import com.invincible.mall.common.api.IErrorCode;
+import com.invincible.mall.common.result.IErrorCode;
 
 /**
  * 自定义异常

@@ -1,8 +1,8 @@
 package com.invincible.mall.backstage.exception;
 
-import com.invincible.mall.common.api.CommonResult;
-import com.invincible.mall.common.api.ErrorCode;
 import com.invincible.mall.common.exception.CustomizeException;
+import com.invincible.mall.common.result.CommonResult;
+import com.invincible.mall.common.result.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

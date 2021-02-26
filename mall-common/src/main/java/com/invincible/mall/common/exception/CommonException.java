@@ -1,6 +1,6 @@
 package com.invincible.mall.common.exception;
 
-import com.invincible.mall.common.api.ErrorCode;
+import com.invincible.mall.common.result.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 
