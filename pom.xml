@@ -140,6 +140,13 @@
             <version>4.5.7</version>
         </dependency>
 
+        <!--JWT解析库-->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>8.16</version>
+        </dependency>
+
     </dependencies>
     </dependencyManagement>
 

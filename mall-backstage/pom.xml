@@ -106,6 +106,12 @@
             <version>1.0.0</version>
         </dependency>
 
+        <!--JWT解析库-->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
