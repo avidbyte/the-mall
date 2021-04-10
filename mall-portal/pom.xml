@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.invincible.mall</groupId>
-        <artifactId>mobile-mall</artifactId>
+        <groupId>com.inst.mall</groupId>
+        <artifactId>the-mall</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.invincible.mall.portal</groupId>
+    <groupId>com.inst.mall.portal</groupId>
     <artifactId>mall-portal</artifactId>
     <version>1.0.0</version>
     <name>mall-portal</name>
