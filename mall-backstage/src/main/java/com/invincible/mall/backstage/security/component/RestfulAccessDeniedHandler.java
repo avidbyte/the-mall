@@ -1,7 +1,7 @@
 package com.invincible.mall.backstage.security.component;
 
 import cn.hutool.json.JSONUtil;
-import com.lanlinker.cloud.common.api.CommonResult;
+import com.invincible.mall.common.result.CommonResult;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * 自定义返回结果：没有权限访问时
- * @author tyh
+ * @author aaron
  */
 public class RestfulAccessDeniedHandler implements AccessDeniedHandler{
     @Override

@@ -1,7 +1,7 @@
 package com.invincible.mall.backstage.security.component;
 
 import cn.hutool.json.JSONUtil;
-import com.lanlinker.cloud.common.api.CommonResult;
+import com.invincible.mall.common.result.CommonResult;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * 自定义返回结果：未登录或登录过期
  *
- * @author macro
+ * @author aaron
  * @date 2018/5/14
  */
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {

@@ -112,6 +112,11 @@
             <artifactId>nimbus-jose-jwt</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

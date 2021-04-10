@@ -1,6 +1,6 @@
 package com.invincible.mall.backstage.security.component;
 
-import com.lanlinker.cloud.labor.security.config.IgnoreUrlsConfig;
+import com.invincible.mall.backstage.security.config.IgnoreUrlsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.SecurityMetadataSource;

@@ -20,7 +20,7 @@ import java.io.IOException;
 
 /**
  * JWT登录授权过滤器
- * Created by tyh
+ * @author aaron
  */
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);

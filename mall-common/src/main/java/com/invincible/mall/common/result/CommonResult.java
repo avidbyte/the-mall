@@ -119,6 +119,20 @@ public class CommonResult<T> implements Serializable {
         return new CommonResult<T>(ErrorCode.A0400.getCode(), message, null);
     }
 
+    /**
+     * 未登录返回结果
+     */
+    public static <T> CommonResult<T> unauthorized(T data) {
+        return new CommonResult<T>(ErrorCode.A0230.getCode(),ErrorCode.A0230.getMessage(),data);
+    }
+
+    /**
+     * 未授权返回结果
+     */
+    public static <T> CommonResult<T> forbidden(T data) {
+        return new CommonResult<T>(ErrorCode.A0301.getCode(),ErrorCode.A0301.getMessage(),data);
+    }
+
 
     public String getCode() {
         return code;
