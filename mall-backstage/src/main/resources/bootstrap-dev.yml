@@ -1,0 +1,81 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: backstage
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/javacode?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  redis:
+    host: localhost
+    port: 6379
+    password: redis000000
+
+#MybatisPlus
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#
+#
+#spring:
+#  cloud:
+#    config:
+#      profile: dev #启用环境名称
+#      label: master #分支名称
+#      name: labor #配置文件名称
+#      discovery:
+#        enabled: true
+#        service-id: lanlinker-config
+#
+#logging:
+#  file:
+#    name: E:/data/lanlinker/logs/admin.log #添加开启admin的日志监控
+#  level:
+#    com.lanlinker.cloud.labor: debug
+#
+
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://root:root@localhost:10010/eureka/
+#    registry-fetch-interval-seconds: 5 #表示eureka client间隔多久去拉取服务注册信息，默认为30秒
+#  instance:
+#    lease-expiration-duration-in-seconds: 15  # 发呆时间，15秒不发送就过期 即服务续约到期时间（缺省为90s）
+#    lease-renewal-interval-in-seconds: 5   #心跳时间，5秒发送一次心跳（缺省为30s
+#    prefer-ip-address: true
+#    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+#
+##负载配置
+#ribbon:
+#  eureka:
+#    enabled: true
+#  ReadTimeout: 10000
+#  ConnectTimeout: 10000
+#  OkToRetryOnAllOperations: true #对超时请求启用重试机制
+#  MaxAutoRetriesNextServer: 1 #切换重试实例的最大个数
+#  MaxAutoRetries: 1 # 切换实例后重试最大次数
+#  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #修改负载均衡算法
+#
+#feign:
+#  hystrix:
+#    enabled: true
+#
+##熔断配置
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 300000
+#          strategy: SEMAPHORE
+
+
