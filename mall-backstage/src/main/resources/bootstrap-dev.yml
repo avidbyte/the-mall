@@ -13,12 +13,52 @@ spring:
     host: localhost
     port: 6379
     password: redis000000
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 50MB #限制文件上传大小为10M
+      max-request-size: 50MB
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
 
 #MybatisPlus
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
+redis:
+  database: mall
+  key:
+    user: 'mall:user'
+    resourceList: 'mall:resourceList'
+  expire:
+    common: 86400 # 24小时
+
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: admin-secret #JWT加解密使用的密钥
+  expiration: 86400 #JWT的超期限时间(60*60*24)  一天
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /actuator/**
 
 #
 #
