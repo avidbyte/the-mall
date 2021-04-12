@@ -1,7 +1,8 @@
 package com.inst.mall.backstage.security.config;
 
-import com.lanlinker.cloud.labor.security.component.*;
-import com.lanlinker.cloud.labor.security.util.JwtTokenUtil;
+import com.inst.mall.backstage.security.component.*;
+
+import com.inst.mall.backstage.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
@@ -98,8 +99,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public com.lanlinker.cloud.labor.security.config.IgnoreUrlsConfig ignoreUrlsConfig() {
-        return new com.lanlinker.cloud.labor.security.config.IgnoreUrlsConfig();
+    public IgnoreUrlsConfig ignoreUrlsConfig() {
+        return new IgnoreUrlsConfig();
     }
 
     @Bean
