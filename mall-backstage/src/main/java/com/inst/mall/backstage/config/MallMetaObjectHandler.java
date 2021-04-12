@@ -1,7 +1,7 @@
-//package com.invincible.mall.backstage.config;
+//package com.inst.mall.backstage.config;
 //
 //import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-//import com.lanlinker.cloud.labor.util.UserUtils;
+//import com.inst.mall.backstage.util.UserUtils;
 //import lombok.extern.slf4j.Slf4j;
 //import org.apache.ibatis.reflection.MetaObject;
 //import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@
 // */
 //@Slf4j
 //@Component
-//public class MyMetaObjectHandler implements MetaObjectHandler {
+//public class MallMetaObjectHandler implements MetaObjectHandler {
 //
 //
 //    /**
@@ -28,11 +28,12 @@
 //        if(userId==null){
 //            userId = -1;
 //        }
-//        this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
-//        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+//        LocalDateTime now = LocalDateTime.now();
 //        this.setFieldValByName("createBy", userId, metaObject);
+//        this.setFieldValByName("createTime",now, metaObject);
 //        this.setFieldValByName("updateBy", userId, metaObject);
-//        this.setFieldValByName("delFlag", "0", metaObject);
+//        this.setFieldValByName("updateTime", now, metaObject);
+//        this.setFieldValByName("delFlag", false, metaObject);
 //
 //    }
 //

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 劳务系统用户信息表 前端控制器
+ * 后台角色菜单关系表 前端控制器
  * </p>
  *
  * @author aaron
- * @since 2021-02-10
+ * @since 2021-04-12
  */
 @RestController
-@RequestMapping("/user")
-public class SysUserController {
+@RequestMapping("/umsRoleMenuRelation")
+public class UmsRoleMenuRelationController {
 
 }

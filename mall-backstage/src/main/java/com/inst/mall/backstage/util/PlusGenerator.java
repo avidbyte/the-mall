@@ -20,12 +20,12 @@ import java.util.Map;
  * @since 2020-07-20 09:16
  */
 public class PlusGenerator {
-    private static final String DATABASE = "mobile-mall";
+    private static final String DATABASE = "the-mall";
     private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true";
 //    private static final String URL = "jdbc:mysql://localhost:3306/" + DATABASE+ "?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USER_NAME = "root";
-    private static final String PASSWORD = "Root@123";
+    private static final String PASSWORD = "root";
 
     //private static String[] tables = new String[]{"users","user_profiles"};
 
@@ -34,7 +34,7 @@ public class PlusGenerator {
 
     public static void main(String[] args) {
         String author = "aaron";
-        String packageName = "com.invincible.mall.backstage";
+        String packageName = "com.inst.mall.backstage";
         String[] tablePrefix = null;
         execute(author,packageName,tablePrefix);
     }
@@ -117,7 +117,7 @@ public class PlusGenerator {
                 // 表名生成策略
                 .setNaming(NamingStrategy.underline_to_camel)
                 // 需要生成的表
-                .setInclude("sys_user")
+                .setInclude("ums_admin","ums_admin_role_relation","ums_menu","ums_resource","ums_resource_category","ums_role","ums_role_menu_relation","ums_role_resource_relation")
                 //Boolean类型字段是否移除is前缀
                 .setEntityBooleanColumnRemoveIsPrefix(true)
                 .setRestControllerStyle(true)
