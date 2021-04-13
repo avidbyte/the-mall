@@ -12,7 +12,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, create_time, name, sort
+        id, create_time, `name`, sort
     </sql>
 
 </mapper>

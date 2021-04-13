@@ -17,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, parent_id, create_time, title, level, sort, name, icon, hidden
+        id, parent_id, create_time, title, `level`, sort, `name`, icon, hidden
     </sql>
 
 </mapper>
