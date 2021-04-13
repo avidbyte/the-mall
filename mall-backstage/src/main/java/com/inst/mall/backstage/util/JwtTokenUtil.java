@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.inst.mall.backstage.exception.JwtExpiredException;
 import com.inst.mall.backstage.exception.JwtInvalidException;
-import com.inst.mall.backstage.security.PayloadDto;
+import com.inst.mall.backstage.security.component.PayloadDto;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
@@ -32,7 +32,6 @@ import java.util.Map;
  * {"sub":"wang","created":1489079981393,"exp":1489684781}
  * signature的生成算法：
  * HMACSHA512(base64UrlEncode(header) + "." +base64UrlEncode(payload),secret)
- * Created by tyh
  */
 @Slf4j
 public class JwtTokenUtil {

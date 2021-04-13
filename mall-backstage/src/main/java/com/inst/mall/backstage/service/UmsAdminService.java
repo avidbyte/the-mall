@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UmsAdminService extends IService<UmsAdmin> {
 
+
+
+
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * 动态权限相关业务类
- * Created by tyh
+ * @author aaron
  */
 public interface DynamicSecurityService {
     /**

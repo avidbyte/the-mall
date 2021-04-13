@@ -13,7 +13,6 @@ import java.util.*;
 
 /**
  * 动态权限数据源，用于获取动态权限规则
- * Created by tyh
  */
 public class DynamicSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 
