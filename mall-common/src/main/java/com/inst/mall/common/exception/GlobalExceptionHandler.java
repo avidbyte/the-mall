@@ -1,7 +1,7 @@
-//package com.invincible.mall.common.exception;
+//package com.inst.mall.common.exception;
 //
-//import com.invincible.mall.common.api.CommonResult;
-//import com.invincible.mall.common.api.ErrorCode;
+//import com.inst.mall.common.api.CommonResult;
+//import com.inst.mall.common.api.ErrorCode;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.web.bind.annotation.ExceptionHandler;
 //import org.springframework.web.bind.annotation.RestControllerAdvice;

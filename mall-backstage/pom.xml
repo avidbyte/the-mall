@@ -69,7 +69,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.invincible.mall</groupId>
+            <groupId>com.inst.mall</groupId>
             <artifactId>mall-common</artifactId>
             <version>1.0.0</version>
         </dependency>
