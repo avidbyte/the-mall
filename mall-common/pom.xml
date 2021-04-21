@@ -11,8 +11,8 @@
     <artifactId>mall-common</artifactId>
     <version>1.0.0</version>
     <name>mall-common</name>
+    <packaging>jar</packaging>
     <description>移动商城公共包</description>
-    <packaging>pom</packaging>
 
     <properties>
         <java.version>11</java.version>
@@ -36,6 +36,11 @@
             <artifactId>mybatis-plus-generator</artifactId>
         </dependency>
 
+        <!--mybatis-plus 需要 freemarker依赖生成 mapper.xml-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -43,6 +48,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>execute</classifier>
+                </configuration>
             </plugin>
         </plugins>
     </build>

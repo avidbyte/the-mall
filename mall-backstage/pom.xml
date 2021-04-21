@@ -8,7 +8,6 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.inst.mall.backstage</groupId>
     <artifactId>mall-backstage</artifactId>
     <version>1.0.0</version>
     <name>mall-backstage</name>
@@ -82,28 +81,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-        </dependency>
-
-        <!--mybatis-plus 需要 freemarker依赖生成 mapper.xml-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.inst.mall</groupId>
-            <artifactId>mall-common</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
         <!--JWT解析库-->
