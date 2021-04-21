@@ -6,12 +6,13 @@ spring:
     name: backstage
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/javacode?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1:3306/the-mall?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
   redis:
     host: localhost
     port: 6379
+#    password: redis000000
   servlet:
     multipart:
       enabled: true #开启文件上传
@@ -33,21 +34,6 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-
-redis:
-  database: mall
-  key:
-    user: 'mall:user'
-    resourceList: 'mall:resourceList'
-  expire:
-    common: 86400 # 24小时
-
-
-jwt:
-  tokenHeader: Authorization #JWT存储的请求头
-  secret: admin-secret #JWT加解密使用的密钥
-  expiration: 86400 #JWT的超期限时间(60*60*24)  一天
-  tokenHead: Bearer  #JWT负载中拿到开头
 
 secure:
   ignored:
