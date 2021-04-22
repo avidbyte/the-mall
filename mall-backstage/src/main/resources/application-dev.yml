@@ -12,12 +12,28 @@ spring:
   redis:
     host: localhost
     port: 6379
-#    password: redis000000
+  #    password: redis000000
   servlet:
     multipart:
       enabled: true #开启文件上传
       max-file-size: 50MB #限制文件上传大小为10M
       max-request-size: 50MB
+
+redis:
+  database: mall
+  key:
+    user: 'mall:user'
+    account: 'backstage:account'
+    resourceList: 'mall:resourceList'
+  expire:
+    common: 86400 # 24小时
+
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: admin-secret #JWT加解密使用的密钥
+  expiration: 86400 #JWT的超期限时间(60*60*24)  一天
+  tokenHead: Bearer  #JWT负载中拿到开头
 
 
 management:
