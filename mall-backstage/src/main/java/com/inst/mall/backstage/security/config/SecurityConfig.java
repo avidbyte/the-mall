@@ -24,10 +24,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  *
  * @author aaron
  */
-@Configuration
+//@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired(required = false)
+    @Autowired
     private DynamicSecurityService dynamicSecurityService;
 
     @Override

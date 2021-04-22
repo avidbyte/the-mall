@@ -6,6 +6,8 @@ import com.inst.mall.backstage.service.UmsResourceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 后台资源表 服务实现类
@@ -17,4 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UmsResourceServiceImpl extends ServiceImpl<UmsResourceMapper, UmsResource> implements UmsResourceService {
 
+    @Override
+    public List<UmsResource> listAll() {
+        return null;
+    }
 }

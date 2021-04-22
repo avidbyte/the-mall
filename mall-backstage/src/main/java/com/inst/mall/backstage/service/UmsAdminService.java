@@ -2,6 +2,7 @@ package com.inst.mall.backstage.service;
 
 import com.inst.mall.backstage.entity.po.UmsAdmin;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * <p>
@@ -15,5 +16,8 @@ public interface UmsAdminService extends IService<UmsAdmin> {
 
 
 
-
+    /**
+     * 获取用户信息
+     */
+    UserDetails loadUserByUsername(String username);
 }
