@@ -2,8 +2,10 @@ package com.inst.mall.backstage.service.impl;
 
 import com.inst.mall.backstage.entity.po.UmsAdmin;
 import com.inst.mall.backstage.mapper.UmsAdminMapper;
+import com.inst.mall.backstage.security.AdminUserDetails;
 import com.inst.mall.backstage.service.UmsAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,13 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        return null;
+        return new User("test", "test", null);
+    }
+
+    @Override
+    public UmsAdmin getUmsAdmin() {
+        UmsAdmin umsAdmin = new UmsAdmin();
+        umsAdmin.setAccount("132");
+        return umsAdmin;
     }
 }

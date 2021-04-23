@@ -1,7 +1,5 @@
 package com.inst.mall.backstage.service;
 
-import org.springframework.beans.factory.annotation.Value;
-
 /**
  * redis 自增主键
  *
@@ -9,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
  * @since 2021-04-19
  */
 public interface IncrementSequenceService {
-
-
 
     /**
      * 获取值

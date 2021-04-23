@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
  */
 public class AdminUserDetails implements UserDetails {
 
+    private static final long serialVersionUID = 7824511198073431162L;
+
     private UmsAdmin umsAdmin;
 
     private List<UmsResource> resourceList;

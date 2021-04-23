@@ -20,4 +20,7 @@ public interface UmsAdminService extends IService<UmsAdmin> {
      * 获取用户信息
      */
     UserDetails loadUserByUsername(String username);
+
+
+    UmsAdmin getUmsAdmin();
 }
