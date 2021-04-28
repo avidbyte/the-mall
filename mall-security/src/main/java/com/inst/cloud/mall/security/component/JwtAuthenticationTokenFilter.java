@@ -1,6 +1,6 @@
-package com.inst.mall.backstage.security.component;
+package com.inst.cloud.mall.security.component;
 
-import com.inst.mall.backstage.security.util.JwtTokenUtil;
+import com.inst.cloud.mall.security.util.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.io.IOException;
 
 /**
  * JWT登录授权过滤器
- * @author aaron
+ * Created by macro on 2018/4/26.
  */
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
@@ -28,10 +28,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
-
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
@@ -41,8 +39,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                                     FilterChain chain) throws ServletException, IOException {
         String authHeader = request.getHeader(this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
-            // The part after "Bearer "
-            String authToken = authHeader.substring(this.tokenHead.length());
+            String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer "
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
             LOGGER.info("checking username:{}", username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

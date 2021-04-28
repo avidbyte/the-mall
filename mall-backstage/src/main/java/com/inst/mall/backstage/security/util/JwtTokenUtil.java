@@ -1,4 +1,4 @@
-package com.inst.mall.backstage.util;
+package com.inst.mall.backstage.security.util;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
@@ -12,7 +12,8 @@ import com.nimbusds.jose.crypto.MACVerifier;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -33,8 +34,8 @@ import java.util.Map;
  * signature的生成算法：
  * HMACSHA512(base64UrlEncode(header) + "." +base64UrlEncode(payload),secret)
  */
-@Slf4j
 public class JwtTokenUtil {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
     public static final String CLAIM_KEY_USERNAME = "sub";
     public static final String CLAIM_KEY_CREATED = "created";
     public static final String CLAIM_KEY_TENANT_ID = "jti";
@@ -71,7 +72,7 @@ public class JwtTokenUtil {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
-            log.info("JWT格式验证失败:{}", token);
+            LOGGER.info("JWT格式验证失败:{}", token);
         }
         return claims;
     }

@@ -4,7 +4,6 @@ import com.inst.mall.backstage.service.StringRedisService;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +16,11 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class StringRedisTemplateImpl implements StringRedisService {
 
-    @Resource
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
+
+    public StringRedisTemplateImpl(StringRedisTemplate stringRedisTemplate){
+        this.stringRedisTemplate=stringRedisTemplate;
+    }
 
     /**
      * 存储字符串

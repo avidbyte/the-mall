@@ -26,12 +26,26 @@
         <module>mall-common</module>
         <module>mall-portal</module>
         <module>mall-backstage</module>
+        <module>mall-security</module>
     </modules>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+    </dependencies>
 
     <dependencyManagement>
     <dependencies>
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>2.3.4.RELEASE</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

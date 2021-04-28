@@ -1,7 +1,6 @@
 package com.inst.mall.backstage.config;
 
 import com.inst.mall.backstage.entity.po.UmsResource;
-import com.inst.mall.backstage.security.AdminUserDetails;
 import com.inst.mall.backstage.security.component.DynamicSecurityService;
 import com.inst.mall.backstage.security.config.SecurityConfig;
 import com.inst.mall.backstage.service.UmsAdminService;
