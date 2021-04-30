@@ -2,7 +2,6 @@ package com.inst.mall.backstage.service.impl;
 
 import com.inst.mall.backstage.entity.po.UmsAdmin;
 import com.inst.mall.backstage.mapper.UmsAdminMapper;
-import com.inst.mall.backstage.security.AdminUserDetails;
 import com.inst.mall.backstage.service.UmsAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.security.core.userdetails.User;
