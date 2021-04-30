@@ -1,14 +1,15 @@
 package com.inst.mall.backstage.entity.po;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -16,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author aaron
- * @since 2021-04-12
+ * @since 2021-04-30
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,11 +27,20 @@ public class UmsAdmin extends Model<UmsAdmin> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * id
+     */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    /**
+     * 账号
+     */
     private String account;
 
+    /**
+     * 密码
+     */
     private String password;
 
     /**
@@ -44,6 +54,11 @@ public class UmsAdmin extends Model<UmsAdmin> {
     private String email;
 
     /**
+     * 手机号
+     */
+    private String mobile;
+
+    /**
      * 昵称
      */
     private String nickName;
@@ -54,11 +69,6 @@ public class UmsAdmin extends Model<UmsAdmin> {
     private String note;
 
     /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
      * 最后登录时间
      */
     private LocalDateTime loginTime;
@@ -67,6 +77,26 @@ public class UmsAdmin extends Model<UmsAdmin> {
      * 帐号启用状态：0->禁用；1->启用
      */
     private Boolean status;
+
+    /**
+     * 创建人
+     */
+    private Long createBy;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新人
+     */
+    private Long updateBy;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
 
 
     @Override
