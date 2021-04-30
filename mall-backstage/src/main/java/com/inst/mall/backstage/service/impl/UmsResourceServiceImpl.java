@@ -19,8 +19,4 @@ import java.util.List;
 @Service
 public class UmsResourceServiceImpl extends ServiceImpl<UmsResourceMapper, UmsResource> implements UmsResourceService {
 
-    @Override
-    public List<UmsResource> listAll() {
-        return null;
-    }
 }

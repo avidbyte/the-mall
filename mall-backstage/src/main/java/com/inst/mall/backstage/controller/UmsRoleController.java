@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 后台用户角色表 前端控制器
+ * 角色列表
  * </p>
  *
  * @author aaron

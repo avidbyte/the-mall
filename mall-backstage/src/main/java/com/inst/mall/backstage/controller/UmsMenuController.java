@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 后台菜单表 前端控制器
+ * 菜单列表
  * </p>
  *
  * @author aaron

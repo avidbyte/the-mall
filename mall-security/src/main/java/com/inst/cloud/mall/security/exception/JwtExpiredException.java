@@ -1,4 +1,4 @@
-package com.inst.mall.backstage.exception;
+package com.inst.cloud.mall.security.exception;
 
 
 /**

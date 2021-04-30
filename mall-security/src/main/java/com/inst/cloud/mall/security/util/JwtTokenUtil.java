@@ -2,6 +2,13 @@ package com.inst.cloud.mall.security.util;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
+import com.inst.cloud.mall.security.entity.PayloadDto;
+import com.inst.cloud.mall.security.exception.JwtExpiredException;
+import com.inst.cloud.mall.security.exception.JwtInvalidException;
+import com.nimbusds.jose.*;
+import com.nimbusds.jose.crypto.MACSigner;
+import com.nimbusds.jose.crypto.MACVerifier;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,6 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,12 +33,16 @@ import java.util.Map;
  * {"sub":"wang","created":1489079981393,"exp":1489684781}
  * signature的生成算法：
  * HMACSHA512(base64UrlEncode(header) + "." +base64UrlEncode(payload),secret)
- * Created by macro on 2018/4/26.
  */
 public class JwtTokenUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
-    private static final String CLAIM_KEY_USERNAME = "sub";
-    private static final String CLAIM_KEY_CREATED = "created";
+    public static final String CLAIM_KEY_USERNAME = "sub";
+    public static final String CLAIM_KEY_CREATED = "created";
+    public static final String CLAIM_KEY_TENANT_ID = "jti";
+
+    /**
+     * 秘钥
+     */
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
@@ -37,9 +51,9 @@ public class JwtTokenUtil {
     private String tokenHead;
 
     /**
-     * 根据负责生成JWT的token
+     * 根据条件生成JWT的token
      */
-    private String generateToken(Map<String, Object> claims) {
+    public String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
@@ -67,10 +81,7 @@ public class JwtTokenUtil {
      * 生成token的过期时间
      */
     private Date generateExpirationDate() {
-        Long time = System.currentTimeMillis() + expiration * 1000;
-        Date now = new Date();
-        Date afterDate = new Date(now .getTime() +  expiration * 1000);
-        return afterDate;
+        return new Date(System.currentTimeMillis() + expiration * 1000);
     }
 
     /**
@@ -88,6 +99,20 @@ public class JwtTokenUtil {
     }
 
     /**
+     * 从token中获取登录租户信息
+     */
+    public String getTenantIdFromToken(String token) {
+        String tenantId;
+        try {
+            Claims claims = getClaimsFromToken(token);
+            tenantId = claims.getId();
+        } catch (Exception e) {
+            tenantId = null;
+        }
+        return tenantId;
+    }
+
+    /**
      * 验证token是否还有效
      *
      * @param token       客户端传入的token
@@ -95,16 +120,15 @@ public class JwtTokenUtil {
      */
     public boolean validateToken(String token, UserDetails userDetails) {
         String username = getUserNameFromToken(token);
-        return username.equals(userDetails.getUsername()) && isTokenExpired(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     /**
-     * 判断token是否已经过期
+     * 判断token是否已经失效
      */
     private boolean isTokenExpired(String token) {
         Date expiredDate = getExpiredDateFromToken(token);
-        boolean flag = expiredDate.before(new Date());
-        return flag;
+        return expiredDate.before(new Date());
     }
 
     /**
@@ -144,7 +168,7 @@ public class JwtTokenUtil {
             return null;
         }
         //如果token已经过期，不支持刷新
-        if(isTokenExpired(token)){
+        if(!isTokenExpired(token)){
             return null;
         }
         //如果token在30分钟之内刚刷新过，返回原token
@@ -171,4 +195,55 @@ public class JwtTokenUtil {
         }
         return false;
     }
+
+
+    /**
+     * 生成对称加密（HMAC) JWT令牌
+     * @param payloadStr  token信息 用于存放用户名、token的生成时间和过期时间
+     * @param secret 秘钥
+     * @return jwt令牌
+     * @throws JOSEException
+     */
+    public String generateTokenByHmac(String payloadStr, String secret) throws JOSEException {
+        //创建JWS头，设置签名算法和类型
+        JWSHeader jwsHeader = new JWSHeader.Builder(JWSAlgorithm.HS256).
+                type(JOSEObjectType.JWT)
+                .build();
+        //将负载信息封装到Payload中
+        Payload payload = new Payload(payloadStr);
+        //创建JWS对象
+        JWSObject jwsObject = new JWSObject(jwsHeader, payload);
+        //创建HMAC签名器
+        JWSSigner jwsSigner = new MACSigner(secret);
+        //签名
+        jwsObject.sign(jwsSigner);
+        return jwsObject.serialize();
+    }
+
+
+    /**
+     * 验证（HMAC) JWT令牌
+     * @param token  token信息 用于存放用户名、token的生成时间和过期时间
+     * @param secret 秘钥
+     * @return PayloadDto 封装JWT中存储的信息
+     * @throws ParseException
+     * @throws JOSEException
+     */
+    public PayloadDto verifyTokenByHmac(String token, String secret) throws ParseException, JOSEException {
+        //从token中解析JWS对象
+        JWSObject jwsObject = JWSObject.parse(token);
+        //创建HMAC验证器
+        JWSVerifier jwsVerifier = new MACVerifier(secret);
+        if (!jwsObject.verify(jwsVerifier)) {
+            throw new JwtInvalidException("token签名不合法！");
+        }
+        String payload = jwsObject.getPayload().toString();
+        PayloadDto payloadDto = JSONUtil.toBean(payload, PayloadDto.class);
+        if (payloadDto.getExp() < LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli()) {
+            throw new JwtExpiredException("token已过期！");
+        }
+        return payloadDto;
+    }
+
+
 }

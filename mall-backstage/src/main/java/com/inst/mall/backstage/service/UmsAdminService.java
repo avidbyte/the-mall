@@ -17,7 +17,9 @@ public interface UmsAdminService extends IService<UmsAdmin> {
 
 
     /**
-     * 获取用户信息
+     * 根据用户名获取用户信息
+     * @param username 获取用户信息
+     * @return UserDetails
      */
     UserDetails loadUserByUsername(String username);
 

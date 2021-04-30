@@ -1,4 +1,4 @@
-package com.inst.mall.backstage.security.component;
+package com.inst.cloud.mall.security.entity;
 
 import lombok.Builder;
 import lombok.Data;

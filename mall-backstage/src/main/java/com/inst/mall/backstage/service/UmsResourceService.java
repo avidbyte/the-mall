@@ -16,8 +16,4 @@ import java.util.List;
 public interface UmsResourceService extends IService<UmsResource> {
 
 
-    /**
-     * 查询全部资源
-     */
-    List<UmsResource> listAll();
 }

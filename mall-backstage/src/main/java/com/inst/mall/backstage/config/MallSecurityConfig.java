@@ -1,11 +1,10 @@
 package com.inst.mall.backstage.config;
 
+import com.inst.cloud.mall.security.component.DynamicSecurityService;
+import com.inst.cloud.mall.security.config.SecurityConfig;
 import com.inst.mall.backstage.entity.po.UmsResource;
-import com.inst.mall.backstage.security.component.DynamicSecurityService;
-import com.inst.mall.backstage.security.config.SecurityConfig;
 import com.inst.mall.backstage.service.UmsAdminService;
 import com.inst.mall.backstage.service.UmsResourceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.ConfigAttribute;
@@ -20,6 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 权限配置
+ *
  * @author aaron
  */
 @Configuration
@@ -27,16 +27,22 @@ import java.util.concurrent.ConcurrentHashMap;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MallSecurityConfig extends SecurityConfig {
 
-    @Autowired
-    private UmsAdminService adminService;
-    @Autowired
-    private UmsResourceService resourceService;
+
+    private final UmsAdminService adminService;
+
+    private final UmsResourceService resourceService;
+
+    public MallSecurityConfig(UmsAdminService adminService, UmsResourceService resourceService) {
+        this.adminService = adminService;
+        this.resourceService = resourceService;
+    }
+
 
     @Override
     @Bean
     public UserDetailsService userDetailsService() {
         //获取登录用户信息
-        return username -> adminService.loadUserByUsername(username);
+        return adminService::loadUserByUsername;
     }
 
     @Bean
@@ -45,7 +51,7 @@ public class MallSecurityConfig extends SecurityConfig {
             @Override
             public Map<String, ConfigAttribute> loadDataSource() {
                 Map<String, ConfigAttribute> map = new ConcurrentHashMap<>();
-                List<UmsResource> resourceList = resourceService.listAll();
+                List<UmsResource> resourceList = resourceService.list();
                 for (UmsResource resource : resourceList) {
                     map.put(resource.getUrl(), new org.springframework.security.access.SecurityConfig(resource.getId() + ":" + resource.getName()));
                 }

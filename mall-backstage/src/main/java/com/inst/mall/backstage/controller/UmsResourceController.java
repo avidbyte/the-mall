@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 后台资源表 前端控制器
+ * 资源列表
  * </p>
  *
  * @author aaron
