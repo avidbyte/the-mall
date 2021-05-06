@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 30/04/2021 16:54:02
+ Date: 06/05/2021 20:52:00
 */
 
 SET NAMES utf8mb4;
@@ -22,19 +22,19 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `ums_admin`;
 CREATE TABLE `ums_admin`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `account` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `account` int(10) NOT NULL COMMENT '账号',
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
-  `icon` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '头像',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '头像',
   `email` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '邮箱',
-  `mobile` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '手机号',
-  `nick_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '昵称',
-  `note` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注信息',
+  `phone_number` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '手机号',
+  `nick_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '昵称',
+  `note` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注信息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '帐号启用状态：0->禁用；1->启用',
-  `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
+  `create_by` int(10) NOT NULL COMMENT '创建人  -1 注册  0 系统',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `update_by` int(10) NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '后台用户表' ROW_FORMAT = Dynamic;
@@ -42,11 +42,11 @@ CREATE TABLE `ums_admin`  (
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1, 'test', '$2a$10$MkQPchfuaobXe34XzLClC.9Zwef3qguGa4Vitp0.SU58YHpo87tNu', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'test@qq.com', '', '测试账号', ' ', '2018-09-29 13:55:39', 1, 0, '2018-09-29 13:55:30', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$.E1FokumK5GIXWgKlg.Hc.i/0/2.qdAwYFL1zc5QHdyzpXOr38RZO', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '', '系统管理员', '系统管理员', '2019-04-20 12:45:16', 1, 0, '2018-10-08 13:32:47', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (4, 'macro', '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'string', 'macro@qq.com', '', 'macro', 'macro专用', '2020-02-03 14:55:55', 1, 0, '2019-10-06 15:53:51', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (6, 'productAdmin', '$2a$10$6/.J.p.6Bhn7ic4GfoB5D.pGd7xSiD1a9M6ht6yO0fxzlKJPjRAGm', ' ', 'product@qq.com', '', '商品管理员', '只有商品权限', NULL, 1, 0, '2020-02-07 16:15:08', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (7, 'orderAdmin', '$2a$10$UqEhA9UZXjHHA3B.L9wNG.6aerrBjC6WHTtbv1FdvYPUI.7lkL6E.', ' ', 'order@qq.com', '', '订单管理员', '只有订单管理权限', NULL, 1, 0, '2020-02-07 16:15:50', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (1, 1231, '$2a$10$MkQPchfuaobXe34XzLClC.9Zwef3qguGa4Vitp0.SU58YHpo87tNu', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'test@qq.com', '', '测试账号', ' ', '2018-09-29 13:55:39', 1, 0, '2018-09-29 13:55:30', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (3, 1231, '$2a$10$.E1FokumK5GIXWgKlg.Hc.i/0/2.qdAwYFL1zc5QHdyzpXOr38RZO', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '', '系统管理员', '系统管理员', '2019-04-20 12:45:16', 1, 0, '2018-10-08 13:32:47', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (4, 123, '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'string', 'macro@qq.com', '', 'macro', 'macro专用', '2020-02-03 14:55:55', 1, 0, '2019-10-06 15:53:51', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (6, 123, '$2a$10$6/.J.p.6Bhn7ic4GfoB5D.pGd7xSiD1a9M6ht6yO0fxzlKJPjRAGm', ' ', 'product@qq.com', '', '商品管理员', '只有商品权限', NULL, 1, 0, '2020-02-07 16:15:08', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (7, 1000000000, '$2a$10$UqEhA9UZXjHHA3B.L9wNG.6aerrBjC6WHTtbv1FdvYPUI.7lkL6E.', ' ', 'order@qq.com', '', '订单管理员', '只有订单管理权限', NULL, 1, 0, '2020-02-07 16:15:50', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
