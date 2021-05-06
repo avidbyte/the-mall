@@ -29,4 +29,27 @@ public class Asserts {
         }
     }
 
+    /**
+     * 参数异常
+     */
+    public static void parameterException(){
+        throw new PublicException(ErrorCode.A0400);
+    }
+
+    /**
+     * 参数异常
+     * @param errorCode 枚举错误码
+     */
+    public static void parameterException(ErrorCode errorCode){
+        throw new PublicException(errorCode);
+    }
+
+    /**
+     * 参数异常
+     * @param code code
+     * @param msg msg
+     */
+    public static void parameterException(String code, String msg){
+        throw new PublicException(code,msg);
+    }
 }

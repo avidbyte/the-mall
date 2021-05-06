@@ -31,12 +31,12 @@ public class UmsAdmin extends Model<UmsAdmin> {
      * id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
      * 账号
      */
-    private String account;
+    private Integer account;
 
     /**
      * 密码
@@ -56,7 +56,7 @@ public class UmsAdmin extends Model<UmsAdmin> {
     /**
      * 手机号
      */
-    private String mobile;
+    private String phoneNumber;
 
     /**
      * 昵称
@@ -81,7 +81,7 @@ public class UmsAdmin extends Model<UmsAdmin> {
     /**
      * 创建人
      */
-    private Long createBy;
+    private Integer createBy;
 
     /**
      * 创建时间
@@ -91,7 +91,7 @@ public class UmsAdmin extends Model<UmsAdmin> {
     /**
      * 更新人
      */
-    private Long updateBy;
+    private Integer updateBy;
 
     /**
      * 更新时间
