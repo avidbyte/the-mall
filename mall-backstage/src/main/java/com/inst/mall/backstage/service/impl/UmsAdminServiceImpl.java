@@ -53,7 +53,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      */
     @Override
     public void delUser(Integer account) {
-        lambdaUpdate().eq(UmsAdmin::getAccount,account).remove();
+        lambdaUpdate().eq(UmsAdmin::getAccount, account).remove();
     }
 
     /**
@@ -62,10 +62,10 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      * @param account 账号
      */
     @Override
-    public void disableUser(Integer account,Boolean status) {
+    public void disableUser(Integer account, Boolean status) {
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(status);
-        update(umsAdmin,lambdaUpdate().eq(UmsAdmin::getAccount,account));
+        update(umsAdmin, lambdaUpdate().eq(UmsAdmin::getAccount, account));
     }
 
     /**
@@ -76,7 +76,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     @Override
     public void updateUser(UmsAdminParam umsAdminParam) {
         UmsAdmin umsAdmin = UmsAdminConverter.INSTANCE.paramToPo(umsAdminParam);
-        update(umsAdmin,lambdaUpdate().eq(UmsAdmin::getAccount,umsAdmin.getAccount()));
+        update(umsAdmin, lambdaUpdate().eq(UmsAdmin::getAccount, umsAdmin.getAccount()));
     }
 
     /**
@@ -90,7 +90,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     @Override
     public CommonPage<UmsAdmin> listData(String keyword, Integer pageNum, Integer pageSize) {
         Page<UmsAdmin> pageInfo = new Page<>();
-        Page<UmsAdmin> page = page(pageInfo,lambdaQuery().like(UmsAdmin::getNickName,keyword));
+        Page<UmsAdmin> page = page(pageInfo, lambdaQuery().like(UmsAdmin::getNickName, keyword));
         return CommonPage.restPage(page);
     }
 
@@ -102,7 +102,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      */
     @Override
     public UmsAdmin getAdminByAccount(Integer account) {
-        return getOne(lambdaQuery().eq(UmsAdmin::getAccount,account));
+        return getOne(lambdaQuery().eq(UmsAdmin::getAccount, account));
     }
 
     /**
@@ -123,15 +123,12 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      */
     @Override
     public void registerByEmail(EmailRegister emailRegister) {
-        if(isEmailExist(emailRegister.getEmail())){
-            UmsAdmin umsAdmin = new UmsAdmin();
-            umsAdmin.setStatus(true);
-            umsAdmin.setCreateBy(-1);
-            Integer uid = Math.toIntExact(incrementSequenceService.getSequence());
-            umsAdmin.setAccount(uid);
-        }else{
-            Asserts.parameterException(ErrorCode.A0400.getCode(),"邮箱已被注册");
-        }
+        checkEmail(emailRegister.getEmail());
+        UmsAdmin umsAdmin = new UmsAdmin();
+        umsAdmin.setStatus(true);
+        umsAdmin.setCreateBy(-1);
+        Integer uid = Math.toIntExact(incrementSequenceService.getSequence());
+        umsAdmin.setAccount(uid);
     }
 
     /**
@@ -141,14 +138,10 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      */
     @Override
     public void registerByPhoneNumber(PhoneNumberRegister phoneNumberRegister) {
-        if(isEmailExist(phoneNumberRegister.getPhoneNumber())){
-            UmsAdmin umsAdmin = new UmsAdmin();
-            umsAdmin.setStatus(true);
-            umsAdmin.setCreateBy(-1);
-
-        }else{
-            Asserts.parameterException(ErrorCode.A0400.getCode(),"邮箱已被注册");
-        }
+        checkPhoneNumber(phoneNumberRegister.getPhoneNumber());
+        UmsAdmin umsAdmin = new UmsAdmin();
+        umsAdmin.setStatus(true);
+        umsAdmin.setCreateBy(-1);
     }
 
     /**
@@ -163,6 +156,31 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     }
 
     /**
+     * 检查邮箱
+     *
+     * @param email 邮箱
+     */
+    @Override
+    public void checkEmail(String email) {
+        if (!isEmailExist(email)) {
+            Asserts.parameterException(ErrorCode.A0400.getCode(), "邮箱已被注册");
+        }
+    }
+
+
+    /**
+     * 检查手机号
+     *
+     * @param phoneNumber 手机号
+     */
+    @Override
+    public void checkPhoneNumber(String phoneNumber) {
+        if (!isPhoneNumberExist(phoneNumber)) {
+            Asserts.parameterException(ErrorCode.A0400.getCode(), "手机号已被注册");
+        }
+    }
+
+    /**
      * 手机号 是否存在
      *
      * @param phoneNumber 手机号
@@ -170,7 +188,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      */
     @Override
     public boolean isPhoneNumberExist(String phoneNumber) {
-        UmsAdmin umsAdmin = getOne(lambdaQuery().eq(UmsAdmin::getPhoneNumber,phoneNumber));
+        UmsAdmin umsAdmin = getOne(lambdaQuery().eq(UmsAdmin::getPhoneNumber, phoneNumber));
         return umsAdmin != null;
     }
 
@@ -182,7 +200,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      */
     @Override
     public boolean isEmailExist(String email) {
-        UmsAdmin umsAdmin = getOne(lambdaQuery().eq(UmsAdmin::getEmail,email));
+        UmsAdmin umsAdmin = getOne(lambdaQuery().eq(UmsAdmin::getEmail, email));
         return umsAdmin != null;
     }
 

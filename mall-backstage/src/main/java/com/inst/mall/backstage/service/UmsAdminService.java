@@ -93,6 +93,19 @@ public interface UmsAdminService extends IService<UmsAdmin> {
 
 
     /**
+     * 检查邮箱
+     * @param email 邮箱
+     */
+    void checkEmail(String email);
+
+    /**
+     * 检查手机号
+     * @param phoneNumber 手机号
+     */
+    void checkPhoneNumber(String phoneNumber);
+
+
+    /**
      * 手机号 是否存在
      * @param phoneNumber 手机号
      * @return boolean
