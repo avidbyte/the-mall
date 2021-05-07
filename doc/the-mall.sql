@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 06/05/2021 20:52:00
+ Date: 07/05/2021 18:33:05
 */
 
 SET NAMES utf8mb4;
@@ -23,7 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `ums_admin`;
 CREATE TABLE `ums_admin`  (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `account` int(10) NOT NULL COMMENT '账号',
+  `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '头像',
   `email` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '邮箱',
@@ -42,11 +42,11 @@ CREATE TABLE `ums_admin`  (
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES (1, 1231, '$2a$10$MkQPchfuaobXe34XzLClC.9Zwef3qguGa4Vitp0.SU58YHpo87tNu', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'test@qq.com', '', '测试账号', ' ', '2018-09-29 13:55:39', 1, 0, '2018-09-29 13:55:30', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (3, 1231, '$2a$10$.E1FokumK5GIXWgKlg.Hc.i/0/2.qdAwYFL1zc5QHdyzpXOr38RZO', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '', '系统管理员', '系统管理员', '2019-04-20 12:45:16', 1, 0, '2018-10-08 13:32:47', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (4, 123, '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'string', 'macro@qq.com', '', 'macro', 'macro专用', '2020-02-03 14:55:55', 1, 0, '2019-10-06 15:53:51', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (6, 123, '$2a$10$6/.J.p.6Bhn7ic4GfoB5D.pGd7xSiD1a9M6ht6yO0fxzlKJPjRAGm', ' ', 'product@qq.com', '', '商品管理员', '只有商品权限', NULL, 1, 0, '2020-02-07 16:15:08', NULL, NULL);
-INSERT INTO `ums_admin` VALUES (7, 1000000000, '$2a$10$UqEhA9UZXjHHA3B.L9wNG.6aerrBjC6WHTtbv1FdvYPUI.7lkL6E.', ' ', 'order@qq.com', '', '订单管理员', '只有订单管理权限', NULL, 1, 0, '2020-02-07 16:15:50', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (1, '1231', '$2a$10$MkQPchfuaobXe34XzLClC.9Zwef3qguGa4Vitp0.SU58YHpo87tNu', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'test@qq.com', '', '测试账号', ' ', '2018-09-29 13:55:39', 1, 0, '2018-09-29 13:55:30', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (3, '1231', '$2a$10$.E1FokumK5GIXWgKlg.Hc.i/0/2.qdAwYFL1zc5QHdyzpXOr38RZO', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', 'admin@163.com', '', '系统管理员', '系统管理员', '2019-04-20 12:45:16', 1, 0, '2018-10-08 13:32:47', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (4, '123', '$2a$10$Bx4jZPR7GhEpIQfefDQtVeS58GfT5n6mxs/b4nLLK65eMFa16topa', 'string', 'macro@qq.com', '', 'macro', 'macro专用', '2020-02-03 14:55:55', 1, 0, '2019-10-06 15:53:51', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (6, '123', '$2a$10$6/.J.p.6Bhn7ic4GfoB5D.pGd7xSiD1a9M6ht6yO0fxzlKJPjRAGm', ' ', 'product@qq.com', '', '商品管理员', '只有商品权限', NULL, 1, 0, '2020-02-07 16:15:08', NULL, NULL);
+INSERT INTO `ums_admin` VALUES (7, '1000000000', '$2a$10$UqEhA9UZXjHHA3B.L9wNG.6aerrBjC6WHTtbv1FdvYPUI.7lkL6E.', ' ', 'order@qq.com', '', '订单管理员', '只有订单管理权限', NULL, 1, 0, '2020-02-07 16:15:50', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_role_relation
