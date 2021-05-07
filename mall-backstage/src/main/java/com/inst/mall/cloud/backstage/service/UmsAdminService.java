@@ -5,7 +5,7 @@ import com.inst.mall.cloud.backstage.entity.dto.EmailRegister;
 import com.inst.mall.cloud.backstage.entity.dto.PhoneNumberRegister;
 import com.inst.mall.cloud.backstage.entity.dto.UmsAdminParam;
 import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
-import com.inst.mall.common.result.CommonPage;
+import com.inst.cloud.mall.common.result.CommonPage;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -27,16 +27,16 @@ public interface UmsAdminService extends IService<UmsAdmin> {
 
     /**
      * 删除用户
-     * @param account 账号
+     * @param username 用户名
      */
-    void delUser(Integer account);
+    void delUser(String username);
 
     /**
      * 禁用/启用 用户
-     * @param account 账号
+     * @param username 用户名
      * @param status 状态
      */
-    void disableUser(Integer account,Boolean status);
+    void disableUser(String username,Boolean status);
 
     /**
      * 更新用户
@@ -56,10 +56,10 @@ public interface UmsAdminService extends IService<UmsAdmin> {
     /**
      * 根据用户账号获取用户信息
      *
-     * @param account 用户名
+     * @param username 用户名
      * @return UmsAdmin
      */
-    UmsAdmin getAdminByAccount(Integer account);
+    UmsAdmin getAdminByAccount(String username);
 
     /**
      * 根据用户id获取用户信息
@@ -86,11 +86,10 @@ public interface UmsAdminService extends IService<UmsAdmin> {
     /**
      * 根据用户账号获取用户信息
      *
-     * @param account 用户账号
+     * @param username 用户账号
      * @return UserDetails
      */
-    UserDetails loadUserByUsername(Integer account);
-
+    UserDetails loadUserByUsername(String username);
 
     /**
      * 检查邮箱
@@ -120,4 +119,11 @@ public interface UmsAdminService extends IService<UmsAdmin> {
      */
     boolean isEmailExist(String email);
 
+
+    /**
+     * 用户名 是否存在
+     * @param username 用户名
+     * @return
+     */
+    boolean isUsernameExist(String username);
 }

@@ -36,7 +36,7 @@ class UmsAdminServiceImplTest extends MallBackstageApplicationTests {
         stringRedisService.set(account,"20000");
         Long id = incrementSequenceService.getSequence();
         System.out.println(id);
-
+        Integer uid = Math.toIntExact(incrementSequenceService.getSequence());
     }
 
     public static void main(String[] args) {

@@ -14,7 +14,7 @@
     <description>移动商城后台管理</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
@@ -73,7 +73,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.inst.mall</groupId>
+            <groupId>com.inst.cloud.mall</groupId>
             <artifactId>mall-security</artifactId>
             <version>1.0.0</version>
         </dependency>

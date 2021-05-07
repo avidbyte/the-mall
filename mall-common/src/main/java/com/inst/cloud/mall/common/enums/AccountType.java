@@ -1,4 +1,4 @@
-package com.inst.mall.common.enums;
+package com.inst.cloud.mall.common.enums;
 
 /**
  * @author nf

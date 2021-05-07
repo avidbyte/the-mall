@@ -1,8 +1,8 @@
 package com.inst.mall.cloud.backstage.exception;
 
-import com.inst.mall.common.exception.CustomizeException;
-import com.inst.mall.common.result.CommonResult;
-import com.inst.mall.common.result.ErrorCode;
+import com.inst.cloud.mall.common.exception.CustomizeException;
+import com.inst.cloud.mall.common.result.CommonResult;
+import com.inst.cloud.mall.common.result.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

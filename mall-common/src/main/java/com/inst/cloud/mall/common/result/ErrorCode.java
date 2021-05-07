@@ -1,4 +1,4 @@
-package com.inst.mall.common.result;
+package com.inst.cloud.mall.common.result;
 
 
 /**

@@ -1,6 +1,7 @@
-package com.inst.mall.common.exception;
+package com.inst.cloud.mall.common.exception;
 
-import com.inst.mall.common.result.ErrorCode;
+
+import com.inst.cloud.mall.common.result.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 

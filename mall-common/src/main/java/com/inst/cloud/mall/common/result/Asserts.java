@@ -1,7 +1,7 @@
-package com.inst.mall.common.result;
+package com.inst.cloud.mall.common.result;
 
 
-import com.inst.mall.common.exception.PublicException;
+import com.inst.cloud.mall.common.exception.PublicException;
 
 /**
  *  断言处理类,用于抛出各种API异常

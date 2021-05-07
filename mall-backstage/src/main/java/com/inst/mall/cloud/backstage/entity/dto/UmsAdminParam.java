@@ -28,10 +28,10 @@ public class UmsAdminParam {
     private String nickName;
 
     /**
-     * 账号
+     * 用户名
      */
-    @NotBlank(groups = {Update.class},message = "账号不能为空")
-    private String account;
+    @NotBlank(groups = {Create.class,Update.class},message = "用户名不能为空")
+    private String username;
 
     /**
      * 密码

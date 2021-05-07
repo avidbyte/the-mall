@@ -1,7 +1,7 @@
-package com.inst.mall.common.util;
+package com.inst.cloud.mall.common.util;
 
 
-import com.inst.mall.common.enums.AccountType;
+import com.inst.cloud.mall.common.enums.AccountType;
 
 /**
  * 正则表达式判断工具类

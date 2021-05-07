@@ -1,6 +1,6 @@
 package com.inst.mall.cloud.portal.controller;
 
-import com.inst.mall.common.result.CommonResult;
+import com.inst.cloud.mall.common.result.CommonResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

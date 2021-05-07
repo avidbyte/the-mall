@@ -10,9 +10,9 @@ import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
 import com.inst.mall.cloud.backstage.mapper.UmsAdminMapper;
 import com.inst.mall.cloud.backstage.service.IncrementSequenceService;
 import com.inst.mall.cloud.backstage.service.UmsAdminService;
-import com.inst.mall.common.result.Asserts;
-import com.inst.mall.common.result.CommonPage;
-import com.inst.mall.common.result.ErrorCode;
+import com.inst.cloud.mall.common.result.Asserts;
+import com.inst.cloud.mall.common.result.CommonPage;
+import com.inst.cloud.mall.common.result.ErrorCode;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -41,31 +41,29 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     @Override
     public void createUser(UmsAdminParam umsAdminParam) {
         UmsAdmin umsAdmin = UmsAdminConverter.INSTANCE.paramToPo(umsAdminParam);
-        Integer uid = Math.toIntExact(incrementSequenceService.getSequence());
-        umsAdmin.setAccount(uid);
         save(umsAdmin);
     }
 
     /**
      * 删除用户
      *
-     * @param account 账号
+     * @param username 用户名
      */
     @Override
-    public void delUser(Integer account) {
-        lambdaUpdate().eq(UmsAdmin::getAccount, account).remove();
+    public void delUser(String username) {
+        lambdaUpdate().eq(UmsAdmin::getUsername, username).remove();
     }
 
     /**
      * 禁用/启用 用户
-     *
-     * @param account 账号
+     * @param username 用户名
+     * @param status 状态
      */
     @Override
-    public void disableUser(Integer account, Boolean status) {
+    public void disableUser(String username, Boolean status) {
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(status);
-        update(umsAdmin, lambdaUpdate().eq(UmsAdmin::getAccount, account));
+        update(umsAdmin, lambdaUpdate().eq(UmsAdmin::getUsername, username));
     }
 
     /**
@@ -76,7 +74,7 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     @Override
     public void updateUser(UmsAdminParam umsAdminParam) {
         UmsAdmin umsAdmin = UmsAdminConverter.INSTANCE.paramToPo(umsAdminParam);
-        update(umsAdmin, lambdaUpdate().eq(UmsAdmin::getAccount, umsAdmin.getAccount()));
+        update(umsAdmin, lambdaUpdate().eq(UmsAdmin::getUsername, umsAdmin.getUsername()));
     }
 
     /**
@@ -97,12 +95,12 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     /**
      * 根据用户名获取用户信息
      *
-     * @param account 账号
+     * @param username 用户名
      * @return UmsAdmin
      */
     @Override
-    public UmsAdmin getAdminByAccount(Integer account) {
-        return getOne(lambdaQuery().eq(UmsAdmin::getAccount, account));
+    public UmsAdmin getAdminByAccount(String username) {
+        return getOne(lambdaQuery().eq(UmsAdmin::getUsername, username));
     }
 
     /**
@@ -127,8 +125,6 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(true);
         umsAdmin.setCreateBy(-1);
-        Integer uid = Math.toIntExact(incrementSequenceService.getSequence());
-        umsAdmin.setAccount(uid);
     }
 
     /**
@@ -151,7 +147,8 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      * @return UserDetails
      */
     @Override
-    public UserDetails loadUserByUsername(Integer account) {
+    public UserDetails loadUserByUsername(String account) {
+
         return new User("test", "test", null);
     }
 
@@ -201,6 +198,18 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     @Override
     public boolean isEmailExist(String email) {
         UmsAdmin umsAdmin = getOne(lambdaQuery().eq(UmsAdmin::getEmail, email));
+        return umsAdmin != null;
+    }
+
+    /**
+     * 用户名 是否存在
+     *
+     * @param username 用户名
+     * @return boolean
+     */
+    @Override
+    public boolean isUsernameExist(String username) {
+        UmsAdmin umsAdmin = getOne(lambdaQuery().eq(UmsAdmin::getUsername, username));
         return umsAdmin != null;
     }
 

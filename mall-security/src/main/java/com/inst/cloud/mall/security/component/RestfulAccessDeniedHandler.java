@@ -1,7 +1,7 @@
 package com.inst.cloud.mall.security.component;
 
 import cn.hutool.json.JSONUtil;
-import com.inst.mall.common.result.CommonResult;
+import com.inst.cloud.mall.common.result.CommonResult;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 

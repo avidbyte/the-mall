@@ -1,4 +1,4 @@
-package com.inst.mall.common.util;
+package com.inst.cloud.mall.common.util;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;

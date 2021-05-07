@@ -34,9 +34,9 @@ public class UmsAdmin extends Model<UmsAdmin> {
     private Integer id;
 
     /**
-     * 账号
+     * 用户名
      */
-    private Integer account;
+    private String username;
 
     /**
      * 密码
