@@ -8,7 +8,7 @@
         <version>2.3.4.RELEASE</version>
     </parent>
 
-    <groupId>com.inst.mall</groupId>
+    <groupId>com.inst.cloud.mall</groupId>
     <artifactId>the-mall</artifactId>
     <version>1.0.0</version>
     <name>the-mall</name>
@@ -27,6 +27,7 @@
         <module>mall-portal</module>
         <module>mall-backstage</module>
         <module>mall-security</module>
+        <module>mall-email</module>
     </modules>
 
 
