@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2020-10-25
  */
 @Configuration
-@MapperScan({"com.inst.mall.backstage.mapper"})
+@MapperScan({"com.inst.mall.cloud.backstage.mapper"})
 public class MybatisPlusConfig {
 
     @Bean

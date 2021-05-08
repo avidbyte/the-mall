@@ -18,6 +18,18 @@ spring:
       enabled: true #开启文件上传
       max-file-size: 50MB #限制文件上传大小为10M
       max-request-size: 50MB
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 291100854@qq.com
+    password:
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        debug: true
+
 
 redis:
   database: mall

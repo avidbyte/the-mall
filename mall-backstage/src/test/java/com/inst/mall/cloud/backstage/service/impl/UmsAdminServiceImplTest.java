@@ -7,9 +7,13 @@ import com.inst.mall.cloud.backstage.service.StringRedisService;
 import com.inst.mall.cloud.backstage.service.UmsAdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author aaron
@@ -53,5 +57,22 @@ class UmsAdminServiceImplTest extends MallBackstageApplicationTests {
         System.out.println("randomUUID："+randomUUID+"："+randomUUID.length());
         System.out.println("objectId："+objectId+"："+objectId.length());
     }
+
+    @Autowired
+    JavaMailSender javaMailSender;
+    @Test
+    public void sendSimpleMail() {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setSubject("这是一封测试邮件");
+        message.setFrom("@qq.com");
+        message.setTo("@163.com");
+//        message.setCc("37xxxxx37@qq.com");
+//        message.setBcc("14xxxxx098@qq.com");
+        message.setSentDate(new Date());
+        message.setText("这是测试邮件的正文");
+        javaMailSender.send(message);
+    }
+
+
 
 }
