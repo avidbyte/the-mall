@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
  * @since 2021-05-06
  */
 @Data
-public class PhoneNumberRegister {
+public class PhoneRegisterDto {
 
     /**
      * 手机号

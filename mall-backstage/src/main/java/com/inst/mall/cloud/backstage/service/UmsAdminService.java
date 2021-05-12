@@ -1,11 +1,11 @@
 package com.inst.mall.cloud.backstage.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.inst.mall.cloud.backstage.entity.dto.EmailRegister;
-import com.inst.mall.cloud.backstage.entity.dto.PhoneNumberRegister;
+import com.inst.cloud.mall.common.result.CommonPage;
+import com.inst.mall.cloud.backstage.entity.dto.EmailRegisterDto;
+import com.inst.mall.cloud.backstage.entity.dto.PhoneRegisterDto;
 import com.inst.mall.cloud.backstage.entity.dto.UmsAdminParam;
 import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
-import com.inst.cloud.mall.common.result.CommonPage;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -72,16 +72,16 @@ public interface UmsAdminService extends IService<UmsAdmin> {
     /**
      * 邮箱注册
      *
-     * @param emailRegister 邮箱注册参数
+     * @param emailRegisterDto 邮箱注册参数
      */
-    void registerByEmail(EmailRegister emailRegister);
+    void emailRegister(EmailRegisterDto emailRegisterDto);
 
     /**
      * 手机号注册
      *
-     * @param phoneNumberRegister 手机号注册参数
+     * @param phoneRegisterDto 手机号注册参数
      */
-    void registerByPhoneNumber(PhoneNumberRegister phoneNumberRegister);
+    void phoneRegister(PhoneRegisterDto phoneRegisterDto);
 
     /**
      * 根据用户账号获取用户信息
@@ -123,7 +123,11 @@ public interface UmsAdminService extends IService<UmsAdmin> {
     /**
      * 用户名 是否存在
      * @param username 用户名
-     * @return
+     * @return boolean
      */
     boolean isUsernameExist(String username);
+
+
+
+
 }

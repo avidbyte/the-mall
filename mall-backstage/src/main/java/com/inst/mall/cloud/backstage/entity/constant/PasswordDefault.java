@@ -1,4 +1,4 @@
-package com.inst.mall.cloud.backstage.entity.initial;
+package com.inst.mall.cloud.backstage.entity.constant;
 
 /**
  * 初始密码

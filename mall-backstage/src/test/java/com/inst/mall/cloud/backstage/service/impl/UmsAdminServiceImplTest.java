@@ -1,11 +1,15 @@
 package com.inst.mall.cloud.backstage.service.impl;
 
-import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.RandomUtil;
+import com.inst.cloud.mall.common.exception.PublicException;
+import com.inst.cloud.mall.common.exception.UserClientException;
+import com.inst.cloud.mall.security.service.RedisService;
 import com.inst.mall.cloud.backstage.MallBackstageApplicationTests;
 import com.inst.mall.cloud.backstage.service.IncrementSequenceService;
 import com.inst.mall.cloud.backstage.service.StringRedisService;
 import com.inst.mall.cloud.backstage.service.UmsAdminService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +30,13 @@ class UmsAdminServiceImplTest extends MallBackstageApplicationTests {
     @Value("${redis.key.account}")
     private String account;
 
+
+    @Value("${redis.key.account}")
+    private String businessKey;
+
+    @Resource
+    private RedisService redisService;
+
     @Resource
     private UmsAdminService umsAdminService;
 
@@ -44,18 +55,20 @@ class UmsAdminServiceImplTest extends MallBackstageApplicationTests {
     }
 
     public static void main(String[] args) {
-        String fastSimpleUUID =  IdUtil.fastSimpleUUID();
-        String simpleUUID =  IdUtil.simpleUUID();
-        String fastUUID =  IdUtil.fastUUID();
-        String randomUUID =  IdUtil.randomUUID();
-        String objectId =  IdUtil.objectId();
+//        String fastSimpleUUID =  IdUtil.fastSimpleUUID();
+//        String simpleUUID =  IdUtil.simpleUUID();
+//        String fastUUID =  IdUtil.fastUUID();
+//        String randomUUID =  IdUtil.randomUUID();
+//        String objectId =  IdUtil.objectId();
+//
+//
+//        System.out.println("fastSimpleUUID："+fastSimpleUUID+"："+fastSimpleUUID.length());
+//        System.out.println("simpleUUID："+simpleUUID+"："+simpleUUID.length());
+//        System.out.println("fastUUID："+fastUUID+"："+fastUUID.length());
+//        System.out.println("randomUUID："+randomUUID+"："+randomUUID.length());
+//        System.out.println("objectId："+objectId+"："+objectId.length());
 
 
-        System.out.println("fastSimpleUUID："+fastSimpleUUID+"："+fastSimpleUUID.length());
-        System.out.println("simpleUUID："+simpleUUID+"："+simpleUUID.length());
-        System.out.println("fastUUID："+fastUUID+"："+fastUUID.length());
-        System.out.println("randomUUID："+randomUUID+"："+randomUUID.length());
-        System.out.println("objectId："+objectId+"："+objectId.length());
     }
 
     @Autowired
@@ -73,6 +86,21 @@ class UmsAdminServiceImplTest extends MallBackstageApplicationTests {
         javaMailSender.send(message);
     }
 
+
+
+
+
+    @Test
+    public void toDo(){
+        String phoneNumber ="18846192960";
+        String result = (String)redisService.get(businessKey+phoneNumber);
+        if(StringUtils.isNotBlank(result)){
+            throw new UserClientException("频率过快，请稍后重试");
+        }
+
+        String code = RandomUtil.randomNumbers(6);
+        redisService.set(businessKey+phoneNumber,code,60);
+    }
 
 
 }

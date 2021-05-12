@@ -2,17 +2,17 @@ package com.inst.mall.cloud.backstage.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.inst.cloud.mall.common.result.Asserts;
+import com.inst.cloud.mall.common.result.CommonPage;
+import com.inst.cloud.mall.common.result.ErrorCode;
 import com.inst.mall.cloud.backstage.convert.UmsAdminConverter;
-import com.inst.mall.cloud.backstage.entity.dto.EmailRegister;
-import com.inst.mall.cloud.backstage.entity.dto.PhoneNumberRegister;
+import com.inst.mall.cloud.backstage.entity.dto.EmailRegisterDto;
+import com.inst.mall.cloud.backstage.entity.dto.PhoneRegisterDto;
 import com.inst.mall.cloud.backstage.entity.dto.UmsAdminParam;
 import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
 import com.inst.mall.cloud.backstage.mapper.UmsAdminMapper;
 import com.inst.mall.cloud.backstage.service.IncrementSequenceService;
 import com.inst.mall.cloud.backstage.service.UmsAdminService;
-import com.inst.cloud.mall.common.result.Asserts;
-import com.inst.cloud.mall.common.result.CommonPage;
-import com.inst.cloud.mall.common.result.ErrorCode;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -117,11 +117,11 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     /**
      * 邮箱注册
      *
-     * @param emailRegister 用户登录参数
+     * @param emailRegisterDto 邮箱注册参数
      */
     @Override
-    public void registerByEmail(EmailRegister emailRegister) {
-        checkEmail(emailRegister.getEmail());
+    public void emailRegister(EmailRegisterDto emailRegisterDto) {
+        checkEmail(emailRegisterDto.getEmail());
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(true);
         umsAdmin.setCreateBy(-1);
@@ -130,11 +130,11 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     /**
      * 手机号注册
      *
-     * @param phoneNumberRegister 手机号注册参数
+     * @param phoneRegisterDto 手机号注册参数
      */
     @Override
-    public void registerByPhoneNumber(PhoneNumberRegister phoneNumberRegister) {
-        checkPhoneNumber(phoneNumberRegister.getPhoneNumber());
+    public void phoneRegister(PhoneRegisterDto phoneRegisterDto) {
+        checkPhoneNumber(phoneRegisterDto.getPhoneNumber());
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setStatus(true);
         umsAdmin.setCreateBy(-1);

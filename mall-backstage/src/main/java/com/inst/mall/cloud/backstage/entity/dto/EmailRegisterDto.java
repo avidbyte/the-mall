@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
  * @since 2021-05-06
  */
 @Data
-public class EmailRegister {
+public class EmailRegisterDto {
 
     /**
      * 邮箱
