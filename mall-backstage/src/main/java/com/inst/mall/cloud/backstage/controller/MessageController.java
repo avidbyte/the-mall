@@ -22,9 +22,9 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping("/sendCode")
-    CommonResult<String> sendPhoneVerificationCode(@RequestParam("phoneNumber") String phoneNumber) {
-        String code = messageService.sendPhoneVerificationCode(phoneNumber);
-        return CommonResult.success(code);
+    CommonResult<Boolean> sendPhoneVerificationCode(@RequestParam("phoneNumber") String phoneNumber) {
+        messageService.sendPhoneVerificationCode(phoneNumber);
+        return CommonResult.success();
     }
 
 

@@ -37,7 +37,7 @@ import java.util.Map;
 public class ApplicationLogAspect {
 
 
-    @Pointcut("execution(public * com..inst.mall.backstage.controller.*.*(..))")
+    @Pointcut("execution(public * com.inst.mall.cloud.backstage.controller..*.*(..))")
     public void applicationLog(){
 
     }
