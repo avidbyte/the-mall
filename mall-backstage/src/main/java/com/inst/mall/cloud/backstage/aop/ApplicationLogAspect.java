@@ -4,13 +4,13 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,28 +30,34 @@ import java.util.Map;
  * @author aaron
  * @since 2021-02-09
  **/
+//@Aspect
+//@ComponentScan
+//@Order(1)
+//@Slf4j
 @Aspect
-@ComponentScan
-@Order(1)
 @Slf4j
+@Component
 public class ApplicationLogAspect {
 
 
-    @Pointcut("execution(public * com.inst.mall.cloud.backstage.controller..*.*(..))")
+    @Pointcut("execution(public * com.inst.mall.cloud.backstage.controller.*.*(..))")
     public void applicationLog(){
 
     }
 
-    @Before("applicationLog()")
-    public void doBefore(JoinPoint joinPoint) throws Throwable {
-    }
-
-    @AfterReturning(value = "applicationLog()", returning = "ret")
-    public void doAfterReturning(Object ret) throws Throwable {
-    }
+//    @Before("applicationLog()")
+//    public void doBefore(JoinPoint joinPoint) throws Throwable {
+//        log.info("Before");
+//    }
+//
+//    @AfterReturning(value = "applicationLog()", returning = "ret")
+//    public void doAfterReturning(Object ret) throws Throwable {
+//        log.info("AfterReturning");
+//    }
 
     @Around("applicationLog()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("Around");
         long startTime = System.currentTimeMillis();
         //获取当前请求对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
