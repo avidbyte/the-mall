@@ -1,13 +1,22 @@
 package com.inst.mall.cloud.backstage.aop;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+
+import java.time.LocalDateTime;
 
 /**
  * @author aaron
  * @since 2021-02-09
  */
 @Data
-public class RequestLog {
+public class BackstageRequestLog {
+
+    /**
+     * id
+     */
+    @Id
+    private String id;
 
     /**
      * 操作描述
@@ -20,14 +29,19 @@ public class RequestLog {
     private String username;
 
     /**
-     * 操作时间
+     * 开始时间
      */
-    private Long startTime;
+    private LocalDateTime startTime;
 
     /**
-     * 消耗时间
+     * 结束时间
      */
-    private Integer spendTime;
+    private LocalDateTime endTime;
+
+    /**
+     * 消耗时间 (ms)
+     */
+    private Long spendTime;
 
     /**
      * 根路径

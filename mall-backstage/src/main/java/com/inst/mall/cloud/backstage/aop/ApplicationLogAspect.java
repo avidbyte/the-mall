@@ -10,6 +10,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,21 +32,21 @@ import java.util.Map;
 
 /**
  * 统一AOP记录接口访问日志
+ *
  * @author aaron
  * @since 2021-02-09
  **/
-//@Aspect
-//@ComponentScan
-//@Order(1)
-//@Slf4j
 @Aspect
-@Slf4j
 @Component
+@Order(1)
+@Slf4j
 public class ApplicationLogAspect {
 
+    @Resource
+    private MongoTemplate mongoTemplate;
 
     @Pointcut("execution(public * com.inst.mall.cloud.backstage.controller.*.*(..))")
-    public void applicationLog(){
+    public void applicationLog() {
 
     }
 
@@ -57,33 +62,38 @@ public class ApplicationLogAspect {
 
     @Around("applicationLog()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("Around");
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
+        LocalDateTime startTime = LocalDateTime.now();
         //获取当前请求对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         //记录请求信息
-        RequestLog applicationLog = new RequestLog();
+        BackstageRequestLog applicationLog = new BackstageRequestLog();
         Object result = joinPoint.proceed();
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
+        //ApiOperation   swagger里的
 //        if (method.isAnnotationPresent(ApiOperation.class)) {
 //            ApiOperation apiOperation = method.getAnnotation(ApiOperation.class);
 //            applicationLog.setDescription(apiOperation.value());
 //        }
-        long endTime = System.currentTimeMillis();
+//        long endTime = System.currentTimeMillis();
+        LocalDateTime endTime = LocalDateTime.now();
+        Duration duration = Duration.between(startTime,endTime);
+        long millis = duration.toMillis();
         String urlStr = request.getRequestURL().toString();
         applicationLog.setBasePath(StrUtil.removeSuffix(urlStr, URLUtil.url(urlStr).getPath()));
         applicationLog.setIp(request.getRemoteUser());
         applicationLog.setMethod(request.getMethod());
         applicationLog.setParameter(getParameter(method, joinPoint.getArgs()));
-        applicationLog.setSpendTime((int) (endTime - startTime));
-        applicationLog.setSpendTime((int) (endTime - startTime));
+        applicationLog.setSpendTime((millis));
         applicationLog.setStartTime(startTime);
+        applicationLog.setEndTime(endTime);
         applicationLog.setUri(request.getRequestURI());
         applicationLog.setUrl(request.getRequestURL().toString());
         log.info("{}", JSONUtil.parse(applicationLog));
+        mongoTemplate.save(applicationLog);
         return result;
     }
 
