@@ -8,7 +8,7 @@ import com.inst.cloud.mall.common.result.ErrorCode;
 import com.inst.mall.cloud.backstage.convert.UmsAdminConverter;
 import com.inst.mall.cloud.backstage.entity.dto.EmailRegisterDto;
 import com.inst.mall.cloud.backstage.entity.dto.PhoneRegisterDto;
-import com.inst.mall.cloud.backstage.entity.dto.UmsAdminParam;
+import com.inst.mall.cloud.backstage.entity.dto.UmsAdminDto;
 import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
 import com.inst.mall.cloud.backstage.mapper.UmsAdminMapper;
 import com.inst.mall.cloud.backstage.service.IncrementSequenceService;
@@ -36,11 +36,11 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     /**
      * 创建用户
      *
-     * @param umsAdminParam 后台用户参数
+     * @param UmsAdminDto 后台用户参数
      */
     @Override
-    public void createUser(UmsAdminParam umsAdminParam) {
-        UmsAdmin umsAdmin = UmsAdminConverter.INSTANCE.paramToPo(umsAdminParam);
+    public void createUser(UmsAdminDto UmsAdminDto) {
+        UmsAdmin umsAdmin = UmsAdminConverter.INSTANCE.dtoToPo(UmsAdminDto);
         save(umsAdmin);
     }
 
@@ -56,8 +56,9 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
 
     /**
      * 禁用/启用 用户
+     *
      * @param username 用户名
-     * @param status 状态
+     * @param status   状态
      */
     @Override
     public void disableUser(String username, Boolean status) {
@@ -69,11 +70,11 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
     /**
      * 更新用户
      *
-     * @param umsAdminParam 后台用户参数
+     * @param UmsAdminDto 后台用户参数
      */
     @Override
-    public void updateUser(UmsAdminParam umsAdminParam) {
-        UmsAdmin umsAdmin = UmsAdminConverter.INSTANCE.paramToPo(umsAdminParam);
+    public void updateUser(UmsAdminDto UmsAdminDto) {
+        UmsAdmin umsAdmin = UmsAdminConverter.INSTANCE.dtoToPo(UmsAdminDto);
         update(umsAdmin, lambdaUpdate().eq(UmsAdmin::getUsername, umsAdmin.getUsername()));
     }
 
@@ -96,11 +97,12 @@ public class UmsAdminServiceImpl extends ServiceImpl<UmsAdminMapper, UmsAdmin> i
      * 根据用户名获取用户信息
      *
      * @param username 用户名
-     * @return UmsAdmin
+     * @return UmsAdminDto
      */
     @Override
-    public UmsAdmin getAdminByAccount(String username) {
-        return getOne(lambdaQuery().eq(UmsAdmin::getUsername, username));
+    public UmsAdminDto getAdminByUsername(String username) {
+        UmsAdmin umsAdmin = getOne(lambdaQuery().eq(UmsAdmin::getUsername, username));
+        return UmsAdminConverter.INSTANCE.poToDto(umsAdmin);
     }
 
     /**

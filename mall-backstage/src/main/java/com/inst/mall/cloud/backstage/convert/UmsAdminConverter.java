@@ -1,6 +1,6 @@
 package com.inst.mall.cloud.backstage.convert;
 
-import com.inst.mall.cloud.backstage.entity.dto.UmsAdminParam;
+import com.inst.mall.cloud.backstage.entity.dto.UmsAdminDto;
 import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
 import org.apache.ibatis.annotations.Mapper;
 import org.mapstruct.Mappings;
@@ -20,10 +20,18 @@ public interface UmsAdminConverter {
 
 
     /**
-     * param to po
-     * @param umsAdminParam  创建/更新 用户参数
+     * dto to po
+     * @param UmsAdminDto  dto
      * @return UmsAdmin
      */
     @Mappings({})
-    UmsAdmin paramToPo(UmsAdminParam umsAdminParam);
+    UmsAdmin dtoToPo(UmsAdminDto UmsAdminDto);
+
+    /**
+     * po to dto
+     * @param umsAdmin  po
+     * @return UmsAdminDto
+     */
+    @Mappings({})
+    UmsAdminDto poToDto(UmsAdmin umsAdmin);
 }

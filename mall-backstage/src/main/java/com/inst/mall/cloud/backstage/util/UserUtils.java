@@ -1,5 +1,7 @@
-//package com.inst.mall.backstage.util;
+//package com.inst.mall.cloud.backstage.util;
+//;
 //
+//import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //
 ///**
@@ -14,7 +16,7 @@
 //     * 从当前 线程中 取出 当前的 登录人
 //     * @return LoginUser 当前登录人
 //     */
-//    public static UmsUser getCurrentLoginUser() {
+//    public static UmsAdmin getCurrentLoginUser() {
 ////        AdminUserDetails userDetails = (AdminUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        Object object = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        if (object == null) {

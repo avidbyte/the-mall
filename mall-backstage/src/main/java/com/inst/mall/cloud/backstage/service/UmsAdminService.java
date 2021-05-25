@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.inst.cloud.mall.common.result.CommonPage;
 import com.inst.mall.cloud.backstage.entity.dto.EmailRegisterDto;
 import com.inst.mall.cloud.backstage.entity.dto.PhoneRegisterDto;
-import com.inst.mall.cloud.backstage.entity.dto.UmsAdminParam;
+import com.inst.mall.cloud.backstage.entity.dto.UmsAdminDto;
 import com.inst.mall.cloud.backstage.entity.po.UmsAdmin;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,11 +19,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface UmsAdminService extends IService<UmsAdmin> {
 
 
+    //controller 调用
+
     /**
      * 创建用户
-     * @param umsAdminParam 后台用户参数
+     * @param UmsAdminDto 后台用户参数
      */
-    void createUser(UmsAdminParam umsAdminParam);
+    void createUser(UmsAdminDto UmsAdminDto);
 
     /**
      * 删除用户
@@ -40,9 +42,9 @@ public interface UmsAdminService extends IService<UmsAdmin> {
 
     /**
      * 更新用户
-     * @param umsAdminParam 后台用户参数
+     * @param UmsAdminDto 后台用户参数
      */
-    void updateUser(UmsAdminParam umsAdminParam);
+    void updateUser(UmsAdminDto UmsAdminDto);
 
     /**
      * 根据用户名或昵称分页查询用户
@@ -57,9 +59,9 @@ public interface UmsAdminService extends IService<UmsAdmin> {
      * 根据用户账号获取用户信息
      *
      * @param username 用户名
-     * @return UmsAdmin
+     * @return UmsAdminDto
      */
-    UmsAdmin getAdminByAccount(String username);
+    UmsAdminDto getAdminByUsername(String username);
 
     /**
      * 根据用户id获取用户信息
@@ -82,6 +84,17 @@ public interface UmsAdminService extends IService<UmsAdmin> {
      * @param phoneRegisterDto 手机号注册参数
      */
     void phoneRegister(PhoneRegisterDto phoneRegisterDto);
+
+    /**
+     * 用户名 是否存在
+     * @param username 用户名
+     * @return boolean
+     */
+    boolean isUsernameExist(String username);
+
+
+    // service 调用
+
 
     /**
      * 根据用户账号获取用户信息
@@ -120,12 +133,6 @@ public interface UmsAdminService extends IService<UmsAdmin> {
     boolean isEmailExist(String email);
 
 
-    /**
-     * 用户名 是否存在
-     * @param username 用户名
-     * @return boolean
-     */
-    boolean isUsernameExist(String username);
 
 
 

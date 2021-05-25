@@ -45,7 +45,7 @@ public class ApplicationLogAspect {
     @Resource
     private MongoTemplate mongoTemplate;
 
-    @Pointcut("execution(public * com.inst.mall.cloud.backstage.controller.*.*(..))")
+    @Pointcut("execution(* com.inst.mall.cloud.backstage.controller.*.*(..))")
     public void applicationLog() {
 
     }

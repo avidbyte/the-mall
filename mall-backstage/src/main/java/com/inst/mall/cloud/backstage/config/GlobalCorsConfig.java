@@ -1,4 +1,4 @@
-package com.inst.mall.cloud.backstage.config;//package com.lanlinker.cloud.labor.config;
+package com.inst.mall.cloud.backstage.config;
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

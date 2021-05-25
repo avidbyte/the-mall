@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
  * @since 2021-05-06
  */
 @Data
-public class UmsAdminParam {
+public class UmsAdminDto {
 
     public interface Create {
     }

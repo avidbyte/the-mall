@@ -1,7 +1,7 @@
-//package com.inst.mall.backstage.config;
+//package com.inst.mall.cloud.backstage.config;
 //
 //import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-//import com.inst.mall.backstage.util.UserUtils;
+//import com.inst.mall.cloud.backstage.util.UserUtils;
 //import lombok.extern.slf4j.Slf4j;
 //import org.apache.ibatis.reflection.MetaObject;
 //import org.springframework.stereotype.Component;
